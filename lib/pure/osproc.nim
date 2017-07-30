@@ -919,7 +919,7 @@ elif not defined(useNimRtl):
     discard write(data.pErrorPipe[writeIdx], addr error, sizeof(error))
     exitnow(1)
 
-  when not defined(uClibc) and (not defined(linux) or defined(android)):
+  when not defined(uClibc): # and (not defined(linux) or defined(android)):
     var environ {.importc.}: cstringArray
 
   proc startProcessAfterFork(data: ptr StartProcessData) =
@@ -952,7 +952,7 @@ elif not defined(useNimRtl):
       when defined(uClibc):
         # uClibc environment (OpenWrt included) doesn't have the full execvpe
         discard execve(data.sysCommand, data.sysArgs, data.sysEnv)
-      elif defined(linux) and not defined(android):
+      elif false and defined(linux) and not defined(android):
         discard execvpe(data.sysCommand, data.sysArgs, data.sysEnv)
       else:
         # MacOSX doesn't have execvpe, so we need workaround.
