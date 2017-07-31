@@ -953,7 +953,7 @@ elif not defined(useNimRtl):
         # uClibc environment (OpenWrt included) doesn't have the full execvpe
         discard execve(data.sysCommand, data.sysArgs, data.sysEnv)
       elif false and defined(linux) and not defined(android):
-        discard execvpe(data.sysCommand, data.sysArgs, data.sysEnv)
+        discard ##########execvpe(data.sysCommand, data.sysArgs, data.sysEnv)
       else:
         # MacOSX doesn't have execvpe, so we need workaround.
         # On MacOSX we can arrive here only from fork, so this is safe:
